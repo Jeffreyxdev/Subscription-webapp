@@ -21,7 +21,7 @@ const Navbar = () => {
     <>
     {/*Desktop view*/}
     <nav className="nav-full sticky top-0 flex md:flex justify-between pt-5 z-10 h-5">
-      <div className="nav-container flex justify-between w-[75%] mx-auto">
+      <div className="nav-container flex justify-between w-[75%] mx-auto  ">
         <div>
           <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px]" />
         </div>
