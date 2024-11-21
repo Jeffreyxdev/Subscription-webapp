@@ -4,7 +4,7 @@ import { MdOutlineClose } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
 import { itemVariants, sideVariants } from "../Utils/Motion";
 import Logo from '../assets/logo (3).png'
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const controls=useAnimation();
 
@@ -26,18 +26,18 @@ const Navbar = () => {
           <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px]" />
         </div>
          <ul className="flex justify-around w-[9cm] pt-2 text-[15px]">
-        <li>Home</li>
-        <li>Features</li>
-        <li>Pricing</li>
+       <Link to={'/'}> <li>Home</li></Link>
+        <Link to={'/features'}><li>Features</li></Link>
+       <Link to={'/pricing'}> <li>Pricing</li></Link>
         <li>Blog</li>
       </ul>
-      
+      <Link to={'/login'}>
       <motion.button
         onHoverStart={handleHover}
         onHoverEnd={()=> controls.start({x:0})}
         animate={controls}
         className="w-[211px] h-[50px] bg-[#ffd343] text-white rounded-xl text-[17px]">Login
-      </motion.button>
+      </motion.button></Link>
       </div>
      </nav>
 
