@@ -1,101 +1,170 @@
-import  { useState } from "react";
 import { Link } from "react-router-dom";
-const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+import { motion } from "framer-motion";
+import picture from "../assets/bc98c9dcc76893a46fc71f3920846a05.gif";
+import { auth, provider } from "../Firebase/firebase-conig";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import GoogleBtn from "./GoogleBtn";
+import { useState } from "react";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+const initialState = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const Signup = ({ setIsAuth }) => {
+  const [formData, setFormData] = useState(initialState);
+
+  const { username, email, password, confirmPassword } = formData;
+
+  let navigate = useNavigate();
+
+  const validateForm = () => {
+    if (!username || !email || !password || !confirmPassword) {
+      toast.error("Please, fill in all input fields.");
+      return false; 
     }
-    // Handle sign-up logic here
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return false; 
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return false; 
+    }
+    return true; 
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return; 
+
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(user, { displayName: username });
+      toast.success("Signup successful");
+      localStorage.setItem("isAuth", true);
+      setIsAuth(true);
+      setFormData(initialState); 
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          toast.error("This email is already registered. Please use a different email.");
+          break;
+        case "auth/invalid-email":
+          toast.error("Invalid email format. Please enter a valid email address.");
+          break;
+        case "auth/weak-password":
+          toast.error("Weak password. Password must be at least 6 characters long.");
+          break;
+        default:
+          toast.error("An unexpected error occurred. Please try again.");
+      }
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-700">Sign Up</h2>
-        <form onSubmit={handleSubmit} className="mt-4">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+    <>
+      <div className="signupPage">
+        <div className="w-full min-h-screen flex flex-col md:flex-row items-start">
+      
+          <div className="relative w-full md:w-1/2 h-64 md:h-full flex flex-col">
+            <img src={picture} className="w-full h-full object-cover pic" alt="Signup" />
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Create a password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-600">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirm-password"
-              className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Confirm your password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full px-4 py-2 text-white bg-[#ffd343] rounded-lg hover:bg-[#ffd564] focus:outline-none focus:ring-2 focus:ring-blue-400"
+
+       
+          <motion.div
+            className="w-full md:w-1/2 h-auto flex flex-col p-8 md:p-28 justify-between"
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 75 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.5, delay: 0.25 }}
           >
-            Sign Up
-          </button>
-        </form>
-        <p className="mt-4 text-sm text-center text-gray-600">
-          Already have an account?{" "}
-          <Link to="/login">
-          <a href="#" className="text-blue-500 hover:underline">
-            Log in
-          </a></Link>
-        </p>
+            <div className="w-full flex flex-col">
+              <div className="w-full flex flex-col mb-2">
+                <h3 className="text-xl md:text-4xl font-semibold mb-2">Signup</h3>
+                <p className="text-sm md:text-base mb-2">
+                  Welcome to our online family! Enter your credentials
+                </p>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="w-full flex flex-col">
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    value={username}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    value={email}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    value={confirmPassword}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="w-full flex flex-col my-4">
+                  <button
+                    type="submit"
+                    className="w-full text-white bg-gradient-to-r from-blue-600 to-blue-900 rounded-md py-3 md:py-4 text-center flex items-center justify-center"
+                  >
+                    Signup
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <GoogleBtn setIsAuth={setIsAuth} />
+
+            <div className="w-full flex items-center justify-center">
+              <p className="text-xs md:text-sm font-normal text-white">
+                Have an account?
+                <Link
+                  to="/login"
+                  className="font-semibold underline underline-offset-2 cursor-pointer"
+                >
+                  {" "}
+                  Click here
+                </Link>
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default SignUp;
+export default Signup;

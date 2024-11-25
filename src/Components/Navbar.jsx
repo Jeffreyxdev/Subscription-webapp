@@ -1,3 +1,4 @@
+ 
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
@@ -5,6 +6,7 @@ import { IoMdMenu } from "react-icons/io";
 import { itemVariants, sideVariants } from "../Utils/Motion";
 import Logo from '../assets/logo (3).png'
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const controls=useAnimation();
 
@@ -79,7 +81,7 @@ const Navbar = () => {
           }}
           exit={{
             width: 0,
-            transition: { delay: 0.7, duration: 0.3 }
+            transition: { delay: 0.3, duration: 0.1 }
           }}
          >
         <motion.div 
@@ -87,19 +89,21 @@ const Navbar = () => {
         animate="open"
         exit="closed"
         variants={sideVariants}
-        className="container md:hidden flex flex-col fixed bg-[#272727] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
+        className="container md:hidden flex flex-col fixed bg-[#272727d0] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
           <ul className="text-[20px] mr-[-25px] p-5">
             <motion.li variants={itemVariants} className="mb-6">Home</motion.li>
             <motion.li variants={itemVariants} className="mb-6">Features</motion.li>
             <motion.li variants={itemVariants} className="mb-6">Pricing</motion.li>
             <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
           </ul>
+          <Link to={'/login'}>
           <motion.button
             variants={itemVariants}
-            className="w-[150px] h-[48px] bg-[#ffd343] text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
+            className="w-[150px] h-[48px] bg-[#ffce2c] text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
           >
             Get Started
           </motion.button>
+          </Link>
         </motion.div>
         </motion.aside>
       )}
