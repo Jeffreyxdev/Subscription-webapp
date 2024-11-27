@@ -43,10 +43,10 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         onHoverStart={handleHover}
         onHoverEnd={()=> controls.start({x:0})}
         animate={controls}
-        className="w-[211px] h-[50px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]  mt-4">Login
+        className="w-[100px] h-[40px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]  mt-3 mb-2">Login
       </motion.button></Link>):(
         <>
-        <button className="w-[211px] h-[50px] bg-[#ff5242] hover:bg-[#ff6b5b] rounded-xl text-[17px] mt-4" onClick={GoogleSignout}>Sign out</button>
+        <button className="w-[101px] h-[40px] bg-[#ff5242] hover:bg-[#ff6b5b]  text-white rounded-xl text-[17px] mt-3 mb-2" onClick={GoogleSignout}>Sign out</button>
         </>
       )
       }

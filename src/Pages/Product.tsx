@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { useState } from 'react';
-
+import {auth, db} from '../Firebase/firebase-conig'
+import { addDoc, collection } from 'firebase/firestore'
 import { Input } from "../component/ui/input";
 import { Button } from "../component/ui/button";
 import {
@@ -73,19 +74,30 @@ const Product = ({isAuth}) => {
       }
       return true;
     };
-    const handleSubmit = (e: React.FormEvent) => {
+    const postCollectionRef = collection(db, "ALLpost" )
+    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
       if (!validateForm()) {
         return;
       }
+      try {
+        // Add the form data to Firestore
+        await addDoc(postCollectionRef, formData);
+        toast.success("Subscription Successful!");
+        navigate('/form');
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        toast.error("Failed to subscribe. Please try again.");
+      }
+    
   
 
       toast.success(
        "Subscription Successful!",
        
       );
-      navigate('/');
+      navigate('/form');
     };
     
   const container = {

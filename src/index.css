@@ -18,6 +18,63 @@ html{
 .btn{
     background-image: var(--tw-gradient-stops);
 }
+.homePage {
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+  }
+  .homePage .post {
+    width: 40vw;
+    height: auto;
+    max-height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 20px;
+    padding: 20px;
+    background: rgba(24, 24, 24, 0.66);
+    color: #fff;
+    border-radius: 20px;
+  }
+  
+  .post .postHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    
+  }
+  
+  .postHeader .title {
+    flex: 100%;
+    
+  }
+  .post .postTextContainer {
+    height: 60%;
+    max-height: 400px;
+    width: 100%;
+    font-size: 23px;
+  
+    
+  }
+  
+  .postHeader .deletePost {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .deletePost button {
+    border: none;
+  
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
 .pic{
     border-radius: 20px;
     margin-top: 70px;

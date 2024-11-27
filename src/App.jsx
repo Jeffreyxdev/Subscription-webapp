@@ -7,11 +7,12 @@ import Services from "./InnerPage/Services"
 import SubPlans from "./InnerPage/SubPlans"
 import Login from "./Pages/Login"
 import { signOut } from "firebase/auth";
-import { Analytics } from "@vercel/analytics/react"
+
 import { auth } from "./Firebase/firebase-conig";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/ReactToastify.css"
 import Product from "./Pages/Product"
+import Form from "./Pages/Form"
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
 
@@ -35,8 +36,9 @@ const App = () => {
         <Route path="/login" element={<Login  setIsAuth={setIsAuth}/>}/>      
         <Route path="/create" element={<CreateAcount setIsAuth={setIsAuth}/>}/>
         <Route path="/product" element={<Product isAuth={isAuth}/>}/>
+        <Route path="/form" element={<Form isAuth={isAuth}/>}/>
       </Routes>
-      Analytics()
+      
     </>
   )
 }
