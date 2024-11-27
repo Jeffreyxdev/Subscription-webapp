@@ -7,7 +7,7 @@ import { itemVariants, sideVariants } from "../Utils/Motion";
 import Logo from '../assets/logo (3).png'
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({GoogleSignout, isAuth}) => {
   const controls=useAnimation();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,26 +22,36 @@ const Navbar = () => {
   return (
     <>
     {/*Desktop view*/}
-    <nav className="nav-full sticky top-0 flex md:flex justify-between pt-5 z-10 h-5">
-      <div className="nav-container flex justify-between w-[75%] mx-auto  ">
+    <nav className="nav-full sticky top-0 flex md:flex justify-between pt-5 z-10 h-5  ">
+      <div className="nav-container flex justify-between w-[75%] mx-auto">
         <div>
-          <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px]" />
+          <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px] " />
         </div>
-         <ul className="flex justify-around w-[9cm] pt-2 text-[15px]">
+     
+         <ul className="flex justify-around w-[9cm] pt-2 text-[15px] ">
+          
        <Link to={'/'}> <li>Home</li></Link>
         <Link to={'/features'}><li>Features</li></Link>
        <Link to={'/pricing'}> <li>Pricing</li></Link>
         <li>Blog</li>
       </ul>
+      {
+
+      !isAuth?(
       <Link to={'/login'}>
       <motion.button
         onHoverStart={handleHover}
         onHoverEnd={()=> controls.start({x:0})}
         animate={controls}
-        className="w-[211px] h-[50px] bg-[#ffd343] text-white rounded-xl text-[17px]">Login
-      </motion.button></Link>
+        className="w-[211px] h-[50px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]">Login
+      </motion.button></Link>):(
+        <>
+        <button className="w-[211px] h-[50px] bg-[#ff6943] text-white rounded-xl text-[17px]" onClick={GoogleSignout}>Sign out</button>
+        </>
+      )
+      }
       </div>
-     </nav>
+    </nav>
 
 
 

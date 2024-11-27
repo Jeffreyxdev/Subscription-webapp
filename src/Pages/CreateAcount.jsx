@@ -106,7 +106,7 @@ const Signup = ({ setIsAuth }) => {
                     type="text"
                     name="username"
                     placeholder="Username"
-                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                     value={username}
                     onChange={handleChange}
                   />
@@ -114,7 +114,7 @@ const Signup = ({ setIsAuth }) => {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                     value={email}
                     onChange={handleChange}
                   />
@@ -122,7 +122,7 @@ const Signup = ({ setIsAuth }) => {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                     value={password}
                     onChange={handleChange}
                   />
@@ -130,7 +130,7 @@ const Signup = ({ setIsAuth }) => {
                     type="password"
                     name="confirmPassword"
                     placeholder="Confirm Password"
-                    className="w-full text-white py-2 md:py-4 my-2 bg-transparent border-b border-white outline-none focus:outline-none"
+                    className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                     value={confirmPassword}
                     onChange={handleChange}
                   />
@@ -138,7 +138,7 @@ const Signup = ({ setIsAuth }) => {
                 <div className="w-full flex flex-col my-4">
                   <button
                     type="submit"
-                    className="w-full text-white bg-gradient-to-r from-blue-600 to-blue-900 rounded-md py-3 md:py-4 text-center flex items-center justify-center"
+                    className="w-full text-white bg-gradient-to-r from-blue-600 to-blue-900  rounded-md py-3 md:py-4 text-center flex items-center justify-center"
                   >
                     Signup
                   </button>
@@ -149,7 +149,7 @@ const Signup = ({ setIsAuth }) => {
             <GoogleBtn setIsAuth={setIsAuth} />
 
             <div className="w-full flex items-center justify-center">
-              <p className="text-xs md:text-sm font-normal text-white">
+              <p className="text-xs md:text-sm font-normal text-black">
                 Have an account?
                 <Link
                   to="/login"

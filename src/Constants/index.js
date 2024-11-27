@@ -68,7 +68,7 @@ const plans = [
   },
   {
     title: "Premium",
-    price: "$29/month",
+    price: "₦4,999/month",
     specs: [
       "10 Website",
       "15 GB Hosting",
@@ -78,7 +78,7 @@ const plans = [
   },
   {
     title: "Enterprise",
-    price: "$49/month",
+    price: "₦9,999/month",
     specs: [
       "Unlimited Website",
       "50 GB Hosting",

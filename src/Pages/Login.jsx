@@ -1,118 +1,132 @@
 import { useState } from "react";
+import picture from "../assets/1732523234859.jpg";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase-conig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import {AiFillEyeInvisible,AiOutlineMail,AiFillEye} from 'react-icons/ai';
+import { useNavigate } from "react-router-dom";
 import GoogleBtn from "./GoogleBtn";
 import { toast } from "react-toastify";
-const initialstate ={
+
+const initialState = {
   email: "",
   password: "",
 };
 
-const Login= ({setIsAuth}) => {
-  const [formData, setFormData] = useState(initialstate);
+const Login = ({ setIsAuth }) => {
+  const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
+
   const navigate = useNavigate();
 
-    const handleSubmit = async(e) => {
-      e.preventDefault();
-      // Handle login logic here
-    
-      if (!email || !password) {
-        toast.error("Please, fill in all input fields");
-        setEmailValid(email ? true : false);
-        setPasswordValid(password ? true : false);
-        return;
-      }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
   
-      try {
-        const { user } = await signInWithEmailAndPassword(auth, email, password);
-        localStorage.setItem("isAuth", true);
-        toast.success("Log in successfully!");
-        setIsAuth(true);
-        navigate("/");
-      } catch (error) {
-        toast.error("Invalid credentials");
-        console.error(error);
-      }
-    };
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-  
-      if (name === "email") setEmailValid(value.trim() !== "");
-      if (name === "password") setPasswordValid(value.trim() !== "");
-    };
-  
-  
-    //toggling for password eye
-    const [passwordEye, setPasswordEye] = useState(false);
-    const handlePasswordEye = () => {
-      setPasswordEye(!passwordEye)
+    if (!email || !password) {
+      toast.error("Please, fill in all input fields");
+      setEmailValid(email ? true : false);
+      setPasswordValid(password ? true : false);
+      return;
     }
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-md p-6 dark:bg-[#e8edea]  rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
-          
-          <form onSubmit={handleSubmit} className="mt-4">
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-                Email
-              </label>
-              <div  className='my-2 w-full relative'>
+
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("isAuth", true);
+      toast.success("Log in successfully!");
+      setIsAuth(true);
+      navigate("/");
+    } catch (error) {
+      toast.error("Invalid credentials");
+      console.error(error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (name === "email") setEmailValid(value.trim() !== "value");
+    if (name === "password") setPasswordValid(value.trim() !== "");
+  };
+
+  return (
+    <div className="w-full min-h-screen flex flex-col md:flex-row items-start">
+  
+      <div className="relative w-full md:w-1/2 h-64 md:h-full flex flex-col">
+        <img src={picture} className="w-[700px] h-[590px] object-cover pic" alt="Login" />
+      </div>
+
+      <motion.div
+        className="w-full md:w-1/2 h-auto flex flex-col p-8 md:p-28 justify-between"
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 75 },
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 0.25 }}
+      >
+        <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col mb-2">
+            <h3 className="text-xl md:text-4xl font-semibold mb-2">Login</h3>
+            <p className="text-sm md:text-base mb-2">
+              Welcome back, Great to see you again!
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit}>
+     
+            <div className="relative flex items-center">
               <input
                 type="email"
-                id="email"
-                className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2  border-gray-400 bg-transparent focus:ring-blue-400"
-                placeholder="Enter your email"
+                name="email"
+                placeholder="Email"
+                className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                 value={email}
                 onChange={handleChange}
-                
               />
-               <AiOutlineMail className='absolute right-4 top-4 text-gray-400' />
-               </div>
+             
             </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-                Password
-              </label>
-              <div className='my-2 w-full relative '>
+
+          
+            <div className="relative flex items-center">
               <input
-                type={(passwordEye === false) ? 'password' : 'text'}
-                id="password"
-                className="w-full px-4 py-2 mt-2 text-sm border rounded-lg focus:outline-none focus:ring-2  border-gray-400 bg-transparent focus:ring-blue-400"
-                placeholder="Enter your password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="w-full text-black py-2 md:py-4 my-2 bg-transparent border-b border-black outline-none focus:outline-none"
                 value={password}
                 onChange={handleChange}
-               
               />
-         
-         <div className='absolute right-4 top-4'>
-                  {(passwordEye === false) ? <AiFillEyeInvisible onClick={handlePasswordEye} className='text-gray-400'/> : <AiFillEye onClick={handlePasswordEye} className='text-gray-400'/>}
-                </div>
-                </div>
+            
             </div>
-            <button
-              type="submit"
-              className="w-full px-4 py-2 text-white bg-[#ffce2c] rounded-lg hover:bg-[#ffd564] focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              Login
-            </button>
-            <GoogleBtn setIsAuth={setIsAuth} />
+
+            <div className="w-full flex flex-col my-4">
+              <button className="w-full text-white bg-gradient-to-r from-blue-600 to-blue-900 rounded-md py-3 md:py-4 text-center flex items-center justify-center">
+                Login
+              </button>
+            </div>
           </form>
-          <p className="mt-4 text-sm text-center text-gray-600">
-            Don&apos;t have an account?{" "}
-            <Link to="/create">
-            <a href="#" className="text-blue-500 hover:underline">
-              Sign up
-            </a></Link>
+        </div>
+
+
+        <GoogleBtn setIsAuth={setIsAuth} />
+
+        <div className="w-full flex items-center justify-center">
+          <p className="text-xs md:text-sm font-normal text-black">
+            Don't have an account?{" "}
+            <Link
+              to="/create"
+              className="font-semibold underline underline-offset-2 cursor-pointer"
+            >
+              Click here
+            </Link>
           </p>
         </div>
-      </div>
-  )
-}
+      </motion.div>
+    </div>
+  );
+};
 
-export default Login
+export default Login;

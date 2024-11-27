@@ -4,17 +4,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
+html{
+--tw-gradient-from: #2563eb var(--tw-gradient-from-position);
+--tw-gradient-to: #1e3a8a var(--tw-gradient-to-position);
+--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'ABeeZee', sans-serif;
 }
+.btn{
+    background-image: var(--tw-gradient-stops);
+}
 .pic{
     border-radius: 20px;
-    margin-top: 43px;
+    margin-top: 70px;
     margin-left: 20px;
 }
 .login-with-google-btn {
@@ -84,6 +90,9 @@
 @media screen and (max-width: 800px) {
     .nav-full{
         display:none;
+    }
+    .pic{
+       display: none;
     }
 
     .hero{

@@ -6,7 +6,7 @@ import AOS from 'aos'
 import { useEffect } from "react"
 import { motion, useAnimation } from 'framer-motion'
 
-
+import { Link } from "react-router-dom"
 
 function SubPlans() {
 
@@ -30,7 +30,7 @@ const controls = useAnimation();
     >
       <h2 className='w-[523px] h-[140px] font-bold text-[60px] leading-[70px] tracking-[-1.88px]'>Get the right plan for future product.</h2>
       <div className="buttons pb-[14px]">
-        <button className='text-center bg-[#5454D4] w-[160px] h-[55px] text-white'
+        <button className='text-center bg-gradient-to-r from-blue-600 to-blue-900  w-[160px] h-[55px] text-white'
         >Yearly</button>
         <motion.button 
         onHoverStart={handleHover}
@@ -56,8 +56,8 @@ const controls = useAnimation();
             {plan.specs.map((spec) => ( 
             <li key={spec} className='text-[#696871] text[17px] leading-[50px] tracking-[-0.53px] text-center'>{spec}</li>
           ))}
-            </ul>
-            <button className='text-[#5454D4] bg-white w-[285px] h-[60px] text[18px] leading-[28px] tracking-[-0.56px] font-bold rounded-[12px] mt-6' >{plan.button}</button>
+            </ul><Link to={'/product'}>
+            <button className='text-[#5454D4] bg-white w-[285px] h-[60px] text[18px] leading-[28px] tracking-[-0.56px] font-bold rounded-[12px] mt-6' >{plan.button}</button></Link>
           </div>
         ))}
       </div>
