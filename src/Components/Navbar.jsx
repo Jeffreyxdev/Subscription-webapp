@@ -22,7 +22,7 @@ const Navbar = ({GoogleSignout, isAuth}) => {
   return (
     <>
     {/*Desktop view*/}
-    <nav className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 ">
+    <nav className=" nav-full w-full fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 ">
       <div className="nav-container flex justify-between w-[75%] mx-auto">
         <div className="flex items-center">
           <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px] " />
@@ -101,15 +101,15 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         variants={sideVariants}
         className="container md:hidden flex flex-col fixed bg-[#272727d0] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
           <ul className="text-[20px] mr-[-25px] p-5">
-           <Link to='/'> <motion.li variants={itemVariants} className="mb-6">Home</motion.li></Link>
-            <Link to={'/features'}><motion.li variants={itemVariants} className="mb-6">Features</motion.li></Link>
-            <Link to={'/pricing'}><motion.li variants={itemVariants} className="mb-6">Pricing</motion.li></Link>
+            <motion.li variants={itemVariants} className="mb-6"><Link to='/'>Home</Link></motion.li>
+            <motion.li variants={itemVariants} className="mb-6"><Link to={'/features'}>Features</Link></motion.li>
+            <motion.li variants={itemVariants} className="mb-6"><Link to={'/pricing'}>Pricing</Link></motion.li>
            <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
           </ul>
           <Link to={'/login'}>
           <motion.button
             variants={itemVariants}
-            className="w-[150px] h-[48px] bg-[#ffce2c] text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
+            className="w-[150px] h-[48px] bg-gradient-to-r from-blue-600 to-blue-900 text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
           >
             Get Started
           </motion.button>
