@@ -100,7 +100,7 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         exit="closed"
         variants={sideVariants}
         className="container md:hidden flex flex-col fixed bg-[#272727d0] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
-          <ul className="text-[20px] mr-[-25px] p-5">
+          <ul className="text-[20px] mr-[-25px] p-5" onClick={handleMobileMenuToggle}>
             <motion.li variants={itemVariants} className="mb-6"><Link to='/'>Home</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6"><Link to={'/features'}>Features</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6"><Link to={'/pricing'}>Pricing</Link></motion.li>
