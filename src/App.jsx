@@ -7,7 +7,7 @@ import Services from "./InnerPage/Services"
 import SubPlans from "./InnerPage/SubPlans"
 import Login from "./Pages/Login"
 import { signOut } from "firebase/auth";
-
+import { Analytics } from "@vercel/analytics/react"
 import { auth } from "./Firebase/firebase-conig";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/ReactToastify.css"
@@ -36,6 +36,7 @@ const App = () => {
         <Route path="/create" element={<CreateAcount setIsAuth={setIsAuth}/>}/>
         <Route path="/product" element={<Product isAuth={isAuth}/>}/>
       </Routes>
+      Analytics()
     </>
   )
 }

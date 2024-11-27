@@ -1,5 +1,5 @@
 import { useState } from "react";
-import picture from "../assets/1732523234859.jpg";
+import picture from "../assets/Login.mp4";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { auth } from "../Firebase/firebase-conig";
@@ -54,7 +54,7 @@ const Login = ({ setIsAuth }) => {
     <div className="w-full min-h-screen flex flex-col md:flex-row items-start">
   
       <div className="relative w-full md:w-1/2 h-64 md:h-full flex flex-col">
-        <img src={picture} className="w-[700px] h-[590px] object-cover pic" alt="Login" />
+        <video src={picture} className="w-[700px] h-[590px] object-cover pic" alt="Login" autoPlay muted  loop/>
       </div>
 
       <motion.div
