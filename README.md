@@ -1,7 +1,13 @@
-# React + Vite
+# Subscribtion template web app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+fully functional with authentications 
 
+#firebase
+#react
+#typescripts
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules
+built by Jeffrey Agabaenwere.
+-[](https://github.com/Jeffreyxdev)
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
