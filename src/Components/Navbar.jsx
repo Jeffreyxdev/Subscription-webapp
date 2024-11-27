@@ -105,17 +105,23 @@ const Navbar = ({GoogleSignout, isAuth}) => {
             <motion.li variants={itemVariants} className="mb-6"><Link to={'/features'}>Features</Link></motion.li>
             <motion.li variants={itemVariants} className="mb-6"><Link to={'/pricing'}>Pricing</Link></motion.li>
            <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
-          </ul>
+          </ul>{
+            !isAuth?(
           <Link to={'/login'}>
           <motion.button
             variants={itemVariants}
             className="w-[150px] h-[48px] bg-gradient-to-r from-blue-600 to-blue-900 text-white rounded-xl text-[14px] mt-4 mr-[-2.8em]"
           >
             Get Started
-          </motion.button>
-          </Link>
+          </motion.button></Link>):(
+            <>
+        <button className="w-[101px] h-[40px] bg-[#ff5242] hover:bg-[#ff6b5b]  text-white rounded-xl text-[17px] mt-3 mb-2" onClick={GoogleSignout}>Sign out</button>
+            </>
+          )
+          }
         </motion.div>
         </motion.aside>
+        
       )}
       
 
