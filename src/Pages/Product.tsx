@@ -61,7 +61,7 @@ const Product = ({isAuth}) => {
              "Please, login first");
         }
     },[])
-    const {name, age , payment , location , plan} = formData;
+    
     const validateForm = () => {
       const { name, age, location, plan } = formData;
       if (!name || !age || !location || !plan) {

@@ -43,7 +43,7 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         onHoverStart={handleHover}
         onHoverEnd={()=> controls.start({x:0})}
         animate={controls}
-        className="w-[211px] h-[50px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]">Login
+        className="w-[211px] h-[50px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]  mt-4">Login
       </motion.button></Link>):(
         <>
         <button className="w-[211px] h-[50px] bg-[#ff5242] hover:bg-[#ff6b5b] rounded-xl text-[17px] mt-4" onClick={GoogleSignout}>Sign out</button>
@@ -101,10 +101,10 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         variants={sideVariants}
         className="container md:hidden flex flex-col fixed bg-[#272727d0] text-white w-[55vw] ml-[35vw] mt-[10vh] h-[350px] items-end pr-[18vw] z-10 rounded-2xl pt-4">
           <ul className="text-[20px] mr-[-25px] p-5">
-            <motion.li variants={itemVariants} className="mb-6">Home</motion.li>
-            <motion.li variants={itemVariants} className="mb-6">Features</motion.li>
-            <motion.li variants={itemVariants} className="mb-6">Pricing</motion.li>
-            <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
+           <Link to='/'> <motion.li variants={itemVariants} className="mb-6">Home</motion.li></Link>
+            <Link to={'/features'}><motion.li variants={itemVariants} className="mb-6">Features</motion.li></Link>
+            <Link to={'/pricing'}><motion.li variants={itemVariants} className="mb-6">Pricing</motion.li></Link>
+           <motion.li variants={itemVariants} className="mb-6">Blog</motion.li>
           </ul>
           <Link to={'/login'}>
           <motion.button
