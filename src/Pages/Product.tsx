@@ -25,21 +25,21 @@ import {
 const plans = [
   {
     name: "Free",
-    price: "$0",
+    price: "₦0",
     description: "Perfect for getting started",
-    features: ["Basic features", "Community support", "1 project"],
+    features: ["1 Website", "5 GB Hosting", "Limited Support"],
   },
   {
     name: "Premium",
-    price: "$29",
+    price: "₦4,999",
     description: "Best for professionals",
-    features: ["Advanced features", "Priority support", "10 projects"],
+    features: ["10 Website", "15 GB Hosting", "Premium Support"],
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "₦9,999/month",
     description: "For large organizations",
-    features: ["Custom features", "24/7 support", "Unlimited projects"],
+    features: ["Unlimited Website", "50 GB Hosting", "Premium Support"],
   },
 ];
 const Product = ({isAuth}) => {
@@ -50,7 +50,7 @@ const Product = ({isAuth}) => {
     const [formData, setFormData] = useState({
       name: "",
       age: "",
-      Card : "",
+      payment: "",
       location: "",
       plan: "",
     });
@@ -61,8 +61,26 @@ const Product = ({isAuth}) => {
              "Please, login first");
         }
     },[])
+    const {name, age , payment , location , plan} = formData;
+    const validateForm = () => {
+      const { name, age, location, plan } = formData;
+      if (!name || !age || !location || !plan) {
+        toast.error(
+         
+          "Please fill all the fields",
+        );
+        return false;
+      }
+      return true;
+    };
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
+  
+
       toast.success(
        "Subscription Successful!",
        
@@ -206,10 +224,10 @@ const Product = ({isAuth}) => {
           </div>
           <div>
             <Input
-              name="card"
+              name="payment"
               type="string"
               placeholder="Card Number"
-              value={formData.Card}
+              value={formData.payment}
               onChange={handleInputChange}
               required
               className="w-full"

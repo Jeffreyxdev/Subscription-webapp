@@ -22,17 +22,17 @@ const Navbar = ({GoogleSignout, isAuth}) => {
   return (
     <>
     {/*Desktop view*/}
-    <nav className="nav-full sticky top-0 flex md:flex justify-between pt-5 z-10 h-5  ">
+    <nav className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 ">
       <div className="nav-container flex justify-between w-[75%] mx-auto">
-        <div>
+        <div className="flex items-center">
           <img src={Logo} alt="logo for page" className=" h-[13vh] mt-[-18px] " />
         </div>
      
-         <ul className="flex justify-around w-[9cm] pt-2 text-[15px] ">
+         <ul className="hidden md:flex items-center space-x-8">
           
-       <Link to={'/'}> <li>Home</li></Link>
-        <Link to={'/features'}><li>Features</li></Link>
-       <Link to={'/pricing'}> <li>Pricing</li></Link>
+       <Link to={'/'}  className="text-gray-700 hover:text-gray-900 "> <li>Home</li></Link>
+        <Link to={'/features'}  className="text-gray-700 hover:text-gray-900"><li>Features</li></Link>
+       <Link to={'/pricing'}  className="text-gray-700 hover:text-gray-900"> <li>Pricing</li></Link>
         <li>Blog</li>
       </ul>
       {
@@ -46,7 +46,7 @@ const Navbar = ({GoogleSignout, isAuth}) => {
         className="w-[211px] h-[50px] bg-gradient-to-r from-blue-600 to-blue-900  text-white rounded-xl text-[17px]">Login
       </motion.button></Link>):(
         <>
-        <button className="w-[211px] h-[50px] bg-[#ff6943] text-white rounded-xl text-[17px]" onClick={GoogleSignout}>Sign out</button>
+        <button className="w-[211px] h-[50px] bg-[#ff5242] hover:bg-[#ff6b5b] rounded-xl text-[17px] mt-4" onClick={GoogleSignout}>Sign out</button>
         </>
       )
       }
