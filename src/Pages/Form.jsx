@@ -50,7 +50,8 @@ const Form = ({isAuth}) => {
               </div>
             </div>
             <h3>
-              <div className="postTextContainer">Name: {post.name}</div>
+              <div className="postTextContainer">Name: {post.name}</div>  
+              <div className="postTextContainer">Email: {post.email}</div>
               <div className="postTextContainer">Age: {post.age}</div>
               <div className="postTextContainer">Location: {post.location}</div>
               <div className="postTextContainer">Plan: {post.plan}</div>

@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore} from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import ('dotenv')
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey:"process.env.API_KEY",
+  apiKey:"AIzaSyAMZqco_9tlFkJ3NtuphOE4OnN0xPtvVNI",
   authDomain: "sub-app-fc954.firebaseapp.com",
   projectId: "sub-app-fc954",
   storageBucket: "sub-app-fc954.firebasestorage.app",

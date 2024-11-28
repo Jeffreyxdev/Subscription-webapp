@@ -51,6 +51,7 @@ const Product = ({isAuth}) => {
     const [formData, setFormData] = useState({
       name: "",
       age: "",
+      email:"",
       payment: "",
       location: "",
       plan: "",
@@ -64,8 +65,8 @@ const Product = ({isAuth}) => {
     },[])
     
     const validateForm = () => {
-      const { name, age, location, plan } = formData;
-      if (!name || !age || !location || !plan) {
+      const { name, age, location, plan, email } = formData;
+      if (!name || !age || !location || !plan || !email) {
         toast.error(
          
           "Please fill all the fields",
@@ -240,6 +241,17 @@ const Product = ({isAuth}) => {
               type="string"
               placeholder="Card Number"
               value={formData.payment}
+              onChange={handleInputChange}
+              required
+              className="w-full"
+            />
+          </div>
+        
+          <div>
+            <Input
+              name="email"
+              placeholder="abc@example.com"
+              value={formData.email}
               onChange={handleInputChange}
               required
               className="w-full"
